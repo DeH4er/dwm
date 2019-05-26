@@ -162,6 +162,7 @@ static void arrangemon(Monitor *m);
 static void attach(Client *c);
 static void attachabove(Client *c);
 static void attachstack(Client *c);
+static void autostart();
 static void buttonpress(XEvent *e);
 static void checkotherwm(void);
 static void cleanup(void);
@@ -446,6 +447,12 @@ attachstack(Client *c)
 {
 	c->snext = c->mon->stack;
 	c->mon->stack = c;
+}
+
+void
+autostart() {
+	system("cd ~/.dwm; ./autostart_blocking.sh");
+	system("cd ~/.dwm; ./autostart.sh &");
 }
 
 void
@@ -2271,6 +2278,7 @@ main(int argc, char *argv[])
 		die("pledge");
 #endif /* __OpenBSD__ */
 	scan();
+	autostart();
 	run();
 	cleanup();
 	XCloseDisplay(dpy);
