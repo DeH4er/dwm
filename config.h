@@ -20,15 +20,17 @@ static const char *colors[][3]      = {
 
 
 /* tagging */
-static const char *tags[] = { "A", "O", "E", "U", "1", "2", "3", "4" };
+static const char *tags[] = { "A", "O", "E", "U", "1" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",  NULL,       NULL,       1 << 2,       0,           -1 },
+	/* class          instance    title       tags mask     isfloating   monitor */
+	{ "Firefox",      NULL,       NULL,       1 << 2,       0,           1 },
+	{ "tabbed-surf",  NULL,       NULL,       1 << 2,       0,           1 },
+	{ "Slack",        NULL,       NULL,       1 << 4,       0,           1 },
 };
 
 /* layout(s) */
@@ -67,6 +69,8 @@ static const char *termcmd[]  = { "st", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_y,      spawn,          SHCMD("~/projects/dotfiles/scripts/password-store.sh") },
+	{ MODKEY,                       XK_g,      spawn,          SHCMD("~/projects/dotfiles/scripts/bookmarks-surf.sh") },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
