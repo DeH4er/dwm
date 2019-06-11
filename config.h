@@ -29,7 +29,7 @@ static const Rule rules[] = {
 	 */
 	/* class          instance    title       tags mask     isfloating   monitor */
 	{ "Firefox",      NULL,       NULL,       1 << 2,       0,           1 },
-	{ "tabbed-surf",  NULL,       NULL,       1 << 2,       0,           1 },
+	{ "tabbed-surf",  NULL,       "surf",     1 << 2,       0,           1 },
 	{ "Slack",        NULL,       NULL,       1 << 4,       0,           1 },
 };
 
@@ -71,6 +71,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_y,      spawn,          SHCMD("~/projects/dotfiles/scripts/password-store.sh") },
 	{ MODKEY,                       XK_g,      spawn,          SHCMD("~/projects/dotfiles/scripts/bookmarks-surf.sh") },
+	{ ShiftMask,        		XK_Print,  spawn,          SHCMD("~/projects/dotfiles/scripts/selection-screenshot.sh") },
+	{ ShiftMask|ControlMask,        XK_Print,  spawn,          SHCMD("~/projects/dotfiles/scripts/selection-screenshot-clipboard.sh") },
+	{ 0,	        		XK_Print,  spawn,          SHCMD("~/projects/dotfiles/scripts/screenshot-focused.sh") },
+	{ ControlMask,	        	XK_Print,  spawn,          SHCMD("~/projects/dotfiles/scripts/screenshot-focused-clipboard.sh") },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
