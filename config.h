@@ -28,9 +28,11 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class          instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",      NULL,       NULL,       1 << 2,       0,           1 },
-	{ "tabbed-surf",  NULL,       "surf",     1 << 2,       0,           1 },
-	{ "Slack",        NULL,       NULL,       1 << 4,       0,           1 },
+	{ "Firefox",      NULL,       NULL,       1 << 2,       0,           0 },
+	{ "Google-chrome",NULL,       NULL,       1 << 2,       0,           0 },
+	{ "tabbed-surf",  NULL,       "surf",     1 << 2,       0,           0 },
+	{ "Slack",        NULL,       NULL,       1 << 4,       0,           0 },
+	{ "as5911",       NULL,       NULL,       0 << 0,       0,           0 },
 };
 
 /* layout(s) */
@@ -69,12 +71,12 @@ static const char *termcmd[]  = { "st", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_y,      spawn,          SHCMD("~/projects/dotfiles/scripts/password-store.sh") },
-	{ MODKEY,                       XK_g,      spawn,          SHCMD("~/projects/dotfiles/scripts/bookmarks-surf.sh") },
-	{ ShiftMask,        		XK_Print,  spawn,          SHCMD("~/projects/dotfiles/scripts/selection-screenshot.sh") },
-	{ ShiftMask|ControlMask,        XK_Print,  spawn,          SHCMD("~/projects/dotfiles/scripts/selection-screenshot-clipboard.sh") },
-	{ 0,	        		XK_Print,  spawn,          SHCMD("~/projects/dotfiles/scripts/screenshot-focused.sh") },
-	{ ControlMask,	        	XK_Print,  spawn,          SHCMD("~/projects/dotfiles/scripts/screenshot-focused-clipboard.sh") },
+	{ MODKEY,                       XK_y,      spawn,          SHCMD("~/source/dotfiles/scripts/password-store.sh") },
+	{ MODKEY,                       XK_g,      spawn,          SHCMD("~/source/dotfiles/scripts/bookmarks-surf.sh") },
+	{ ShiftMask,        		XK_Print,  spawn,          SHCMD("~/source/dotfiles/scripts/selection-screenshot.sh") },
+	{ ShiftMask|ControlMask,        XK_Print,  spawn,          SHCMD("~/source/dotfiles/scripts/selection-screenshot-clipboard.sh") },
+	{ 0,	        		XK_Print,  spawn,          SHCMD("~/source/dotfiles/scripts/screenshot-focused.sh") },
+	{ ControlMask,	        	XK_Print,  spawn,          SHCMD("~/source/dotfiles/scripts/screenshot-focused-clipboard.sh") },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -94,7 +96,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ControlMask,           XK_q,      quit,           {0} },
 	TILEKEYS(MODKEY,                                           1, 0, 0)
 	TILEKEYS(MODKEY|ShiftMask,                                 0, 1, 0)
 	TILEKEYS(MODKEY|ControlMask,                               0, 0, 1)
