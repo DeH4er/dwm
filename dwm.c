@@ -1028,8 +1028,22 @@ grabkeys(void)
 void
 incnmaster(const Arg *arg)
 {
-	selmon->nmaster = selmon->pertag->nmasters[selmon->pertag->curtag] = MAX(selmon->nmaster + arg->i, 0);
+	selmon->nmaster = selmon->pertag->nmasters[selmon->pertag->curtag] = clump(selmon->nmaster + arg->i, 1, countclients());
 	arrange(selmon);
+}
+
+int clump(int x, int min, int max) {
+	return MIN(MAX(x, min), max);
+}
+
+int
+countclients() {
+	int count = 0;
+	Client* iter = NULL;
+	for (iter = nexttiled(selmon->clients); iter; iter = nexttiled(iter->next))
+		count++;
+
+	return count;
 }
 
 #ifdef XINERAMA
